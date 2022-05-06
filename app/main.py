@@ -15,7 +15,8 @@ async def on_ready():
 
 @flow.command()
 async def up(message,*args):
-    data = {"name" : str(args)}
+    arg = str(args[0])
+    data = {"name" : arg}
     with open("json_data.json","w") as myJsonFileW:
         json.dump(data,myJsonFileW)
     await message.send("Api update edildi!")
@@ -24,7 +25,7 @@ async def up(message,*args):
 def index():
     with open("json_data.json","r") as myJsonFileR:
         data =json.load(myJsonFileR)
-    return jsonify(data)
+    return jsonify(data["name"])
 
 
 token ="ODkxNjkxNzQ3OTI1Njg4NDMx.YVCCpw.iCBTSZzbuLkr4b4DJ36aVwnmG-U"
