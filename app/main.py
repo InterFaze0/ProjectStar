@@ -14,12 +14,17 @@ async def on_ready():
 
 
 @flow.command()
-async def up(message):
+async def up(message,*args):
+    data = {"name" : str(args)}
+    with open("json_data.json","w") as myJsonFileW:
+        json.dump(data,myJsonFileW)
     await message.send("Api update edildi!")
 
 @app.route("/")
 def index():
-    return "Say Hello"
+    with open("json_data.json","r") as myJsonFileR:
+        data =json.load(myJsonFileR)
+    return jsonify(data)
 
 
 token ="ODkxNjkxNzQ3OTI1Njg4NDMx.YVCCpw.iCBTSZzbuLkr4b4DJ36aVwnmG-U"
@@ -30,7 +35,9 @@ def processTwo():
     app.run(debug=False)
 
 p1 = mlps.Process(target=processOne)
-p2 = mlps.Process(target=processTwo)        
+p2 = mlps.Process(target=processTwo)
+
+
 
 if __name__ == "__main__":
     p1.start()
