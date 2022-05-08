@@ -31,7 +31,7 @@ def index():
     return jsonify(data)
 
 
-token ="OTcyNTc2MDQwOTc3MzAxNTQ0.YnbEBQ.8six__8Y94k8SknxBVwMhwqxovA"
+token =""
 def processOne():
     flow.run(token)
     
